@@ -7,11 +7,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '2023479014',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,9 +30,9 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 218, 196, 4)),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: '2023479014'),
     );
   }
 }
@@ -55,7 +57,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final int _defaultCounter = 0;
 
+  final Color _colorYellow = Colors.yellow;
+  final Color _colorGreen = Colors.green;
+
+  Color _currentColor = Colors.yellow;
+
+  
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -67,6 +76,35 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter()
+  {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  void _presetCounter()
+  {
+      setState(() {
+      _counter = _defaultCounter;
+    });
+  }
+
+  void _changeColor()
+  {
+    setState(()
+    {
+      if(_currentColor == _colorYellow)
+      {
+        _currentColor = _colorGreen;
+      }
+      else
+      {
+        _currentColor = _colorYellow;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -75,6 +113,27 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var persistentFooterButtons = [
+        FloatingActionButton(onPressed: _decrementCounter,
+        backgroundColor: _currentColor,
+        tooltip: 'Decrement',
+        child: const Icon(Icons.remove),),
+        
+        FloatingActionButton(onPressed: _presetCounter, 
+        backgroundColor: _currentColor,
+        tooltip: 'Default', 
+        child: const Icon(Icons.exposure_zero),),
+
+        FloatingActionButton(onPressed: _incrementCounter,
+        backgroundColor: _currentColor, 
+        tooltip: 'Increment', 
+        child: const Icon(Icons.add),),
+
+        FloatingActionButton(onPressed: _changeColor,
+        backgroundColor: _currentColor, 
+        tooltip: 'ChangeColor', 
+        child: const Icon(Icons.palette),)
+      ];
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -104,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
+            const Text('Pixel Art sobre una grilla personalizable'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -112,11 +171,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      persistentFooterButtons: 
+      persistentFooterButtons,
     );
   }
 }
