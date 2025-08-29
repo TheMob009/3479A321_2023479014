@@ -34,6 +34,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  logger: ^2.6.1
+  google_fonts: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -50,13 +52,14 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+flutter:
   uses-material-design: true
 
+  assets:
+    - assets/Pixel-Art-Hot-Pepper-2-1.webp
+    - assets/Pixel-Art-Pizza-2.webp
+    - assets/Pixel-Art-Watermelon-3.webp
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
