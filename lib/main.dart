@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '2023479014',
       theme: _buildAppTheme(),
-      home: const MyHomePage(title: '2023479014'),
+      //home: ListArtScreen()
+      home: const MyHomePage(title: '2023479014')
+      ,
       debugShowCheckedModeBanner: false,
     );
   }
