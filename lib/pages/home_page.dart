@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lab_2/pages/list_art.dart';
 import 'package:lab_2/pages/about.dart';
 import 'package:lab_2/pages/list_creation.dart';
+import 'package:lab_2/pages/pixel_art_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -204,6 +205,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: const Icon(Icons.collections),
                     label: const Text('Mis creaciones'),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PixelArtScreen(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.grid_on),
+                    label: const Text('Pixel Art'),
                   ),
                 ),
               ],
