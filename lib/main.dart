@@ -3,16 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:logger/logger.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'providers/configuration_data.dart';
 import 'pages/home_page.dart';
 
+// Librerías de persistencia
+import 'providers/configuration_data.dart';
+import 'services/shared_preferences_service.dart';
+
 void main() {
-  runApp(
-    ChangeNotifierProvider<ConfigurationData>(
-      create: (_) => ConfigurationData(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,15 +21,20 @@ class MyApp extends StatelessWidget {
     final logger = Logger();
     logger.d("Logger está dando cara!");
 
-    return MaterialApp(
-      title: '2023479014',
-      theme: _buildAppTheme(),
-      home: const MyHomePage(title: '2023479014'),
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider<ConfigurationData>(
+      // Inicializa el provider con el servicio de SharedPreferences
+      create: (_) => ConfigurationData(SharedPreferencesService()),
+      child: MaterialApp(
+        title: '2023479014',
+        theme: _buildAppTheme(),
+        home: const MyHomePage(title: '2023479014'),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
 
+/// Configuración del tema con Google Fonts y Material 3
 ThemeData _buildAppTheme() {
   final base = ThemeData(
     useMaterial3: true,
@@ -50,8 +53,7 @@ ThemeData _buildAppTheme() {
       foregroundColor: base.colorScheme.onPrimaryContainer,
       elevation: 0,
       centerTitle: false,
-      titleTextStyle:
-          textThemeBody.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+      titleTextStyle: textThemeBody.titleLarge?.copyWith(fontWeight: FontWeight.w700),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: base.colorScheme.primary,
@@ -63,8 +65,7 @@ ThemeData _buildAppTheme() {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     ),
     cardTheme: const CardThemeData(
